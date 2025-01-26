@@ -45,15 +45,14 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <SignedOut>
-              <SignInButton />
+              {/*<SignedIn>*/}
+              {/*  <UserButton />*/}
+              {/*</SignedIn>*/}
+
+              <ModeToggle />
+
+              {children}
             </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-
-            <ModeToggle />
-
-            {children}
           </ThemeProvider>
         </body>
       </html>
