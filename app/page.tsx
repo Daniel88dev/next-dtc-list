@@ -1,8 +1,18 @@
+"use client";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function WelcomePage() {
+  const router = useRouter();
+  const [dtc, setDtc] = useState("");
+
+  const onSearch = () => {
+    router.push(`/search-dtc/${dtc}`);
+  };
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <main className="max-w-4xl w-full rounded-lg shadow-xl p-8 space-y-8">
@@ -20,8 +30,9 @@ export default function WelcomePage() {
             type="search"
             placeholder="Enter DTC code (e.g., P0300)"
             className="flex-grow"
+            onChange={(e) => setDtc(e.target.value)}
           />
-          <Button type="submit" className="w-full sm:w-auto">
+          <Button onClick={onSearch} className="w-full sm:w-auto">
             Search
           </Button>
         </div>

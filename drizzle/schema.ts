@@ -26,6 +26,7 @@ export const UsersTable = pgTable(
 export const dtcList = pgTable("dtc_list", {
   id: serial("id").primaryKey(),
   dtc: varchar({ length: 10 }).notNull(),
+  description: varchar({ length: 200 }),
   type: varchar({ length: 50 }),
   system: varchar({ length: 50 }),
   item: varchar({ length: 50 }),
