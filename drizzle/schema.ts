@@ -4,6 +4,7 @@ import {
   text,
   timestamp,
   uniqueIndex,
+  varchar,
 } from "drizzle-orm/pg-core";
 
 export const UsersTable = pgTable(
@@ -21,3 +22,12 @@ export const UsersTable = pgTable(
     };
   }
 );
+
+export const dtcList = pgTable("dtc_list", {
+  id: serial("id").primaryKey(),
+  dtc: varchar({ length: 10 }).notNull(),
+  type: varchar({ length: 50 }),
+  system: varchar({ length: 50 }),
+  item: varchar({ length: 50 }),
+  detail: text("detail"),
+});
