@@ -1,5 +1,6 @@
 import { loadTopDtc } from "@/app/search-dtc/[dtc]/action";
 import BasicDtcList from "@/app/search-dtc/[dtc]/BasicDtcList";
+import SearchDtcComponent from "@/app/search-dtc/[dtc]/SearchDtcComponent";
 
 type Props = Promise<{ dtc: string }>;
 
@@ -8,12 +9,15 @@ const SearchDtcPage = async ({ params }: { params: Props }) => {
 
   const data = await loadTopDtc(dtc);
 
-  console.log(data.success ? data.dtcList : data.message);
-
   return (
     <>
+      <SearchDtcComponent dtc={dtc} />
       {data.success && (
-        <BasicDtcList dtcList={data.dtcList!} searchedDtc={dtc} />
+        <BasicDtcList
+          key={`searched-dtc-${dtc}`}
+          dtcList={data.dtcList!}
+          searchedDtc={dtc}
+        />
       )}
     </>
   );
