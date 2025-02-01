@@ -5,7 +5,6 @@ import { ClerkProvider, SignedOut } from "@clerk/nextjs";
 import { ReactNode } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/DarkModeToggle";
-import { checkSession } from "@/lib/sessionHandler";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +26,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  await checkSession();
-
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>

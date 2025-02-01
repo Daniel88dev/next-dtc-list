@@ -1,29 +1,26 @@
-"use client";
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { checkDtcSession } from "@/lib/sessionHandler";
+import { redirect } from "next/navigation";
 
 type Props = {
   dtc?: string;
 };
 
 const SearchDtcComponent = ({ dtc }: Props) => {
-  const router = useRouter();
+  const onSearch = async (formData: FormData) => {
+    "use server";
 
-  const onSearch = (event: FormEvent) => {
-    event.preventDefault();
+    await checkDtcSession();
 
-    const formData = new FormData(event.currentTarget as HTMLFormElement);
     const searchedDtc = formData.get("searchedDtc");
-    console.log("running");
-    router.push(`/search-dtc/${searchedDtc}`);
+    console.log(searchedDtc);
+    redirect(`/search-dtc/${searchedDtc}`);
   };
 
   return (
     <form
-      onSubmit={onSearch}
+      action={onSearch}
       className="flex flex-col sm:flex-row gap-4 items-center"
     >
       <Input

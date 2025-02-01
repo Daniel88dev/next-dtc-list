@@ -7,7 +7,7 @@ export async function createDtcSession(sessionId: string) {
 }
 
 export async function getDtcSessionData(sessionId: string) {
-  return db
+  const result = await db
     .select({
       sessionId: dtcSession.sessionId,
       attempts: dtcSession.attempts,
@@ -15,6 +15,8 @@ export async function getDtcSessionData(sessionId: string) {
     })
     .from(dtcSession)
     .where(eq(dtcSession.sessionId, sessionId));
+
+  return result[0];
 }
 
 export async function updateDtcSession(sessionId: string, attempts: number) {
