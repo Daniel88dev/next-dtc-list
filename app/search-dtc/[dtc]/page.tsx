@@ -1,6 +1,7 @@
 import { loadTopDtc } from "@/app/search-dtc/[dtc]/action";
 import BasicDtcList from "@/app/search-dtc/[dtc]/BasicDtcList";
 import SearchDtcComponent from "@/app/search-dtc/[dtc]/SearchDtcComponent";
+import DtcErrorSearch from "@/app/search-dtc/[dtc]/DtcErrorSearch";
 
 type Props = Promise<{ dtc: string }>;
 
@@ -20,6 +21,7 @@ const SearchDtcPage = async ({ params }: { params: Props }) => {
             searchedDtc={dtc}
           />
         )}
+        {!data.success && <DtcErrorSearch type={data.type!} />}
       </main>
     </div>
   );

@@ -8,10 +8,18 @@ export type LoadedBasicDtcListType = {
   description: string | null;
 };
 
-export const loadTopDtc = async (dtc: string) => {
+type ResultType = {
+  success: boolean;
+  type?: "notFound" | "short";
+  message?: string;
+  dtcList?: LoadedBasicDtcListType[];
+};
+
+export const loadTopDtc = async (dtc: string): Promise<ResultType> => {
   if (dtc.length < 3) {
     return {
       success: false,
+      type: "short",
       message: "DTC needs to be at least 3 characters long",
     };
   }
@@ -21,6 +29,7 @@ export const loadTopDtc = async (dtc: string) => {
   if (result.length === 0) {
     return {
       success: false,
+      type: "notFound",
       message: "No results found",
     };
   }
