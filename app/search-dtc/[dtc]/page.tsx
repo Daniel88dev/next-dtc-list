@@ -10,16 +10,18 @@ const SearchDtcPage = async ({ params }: { params: Props }) => {
   const data = await loadTopDtc(dtc);
 
   return (
-    <>
-      <SearchDtcComponent dtc={dtc} />
-      {data.success && (
-        <BasicDtcList
-          key={`searched-dtc-${dtc}`}
-          dtcList={data.dtcList!}
-          searchedDtc={dtc}
-        />
-      )}
-    </>
+    <div className="min-h-screen flex flex-col items-center justify-center p-4">
+      <main className="max-w-4xl w-full rounded-lg shadow-xl p-8 space-y-8">
+        <SearchDtcComponent dtc={dtc} />
+        {data.success && (
+          <BasicDtcList
+            key={`searched-dtc-${dtc}`}
+            dtcList={data.dtcList!}
+            searchedDtc={dtc}
+          />
+        )}
+      </main>
+    </div>
   );
 };
 
