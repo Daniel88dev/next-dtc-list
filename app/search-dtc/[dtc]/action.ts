@@ -1,6 +1,7 @@
 "use server";
 
 import { getTopDtcBasic } from "@/drizzle/dtc-list";
+import { auth } from "@clerk/nextjs/server";
 
 export type LoadedBasicDtcListType = {
   id: number;
@@ -16,6 +17,10 @@ type ResultType = {
 };
 
 export const loadTopDtc = async (dtc: string): Promise<ResultType> => {
+  const test = await auth();
+
+  console.log("Session ID:", test);
+
   if (dtc.length < 3) {
     return {
       success: false,

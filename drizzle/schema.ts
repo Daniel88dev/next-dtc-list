@@ -1,4 +1,5 @@
 import {
+  integer,
   pgTable,
   serial,
   text,
@@ -32,3 +33,19 @@ export const dtcList = pgTable("dtc_list", {
   item: varchar({ length: 50 }),
   detail: text("detail"),
 });
+
+export const dtcSession = pgTable(
+  "dtc_session",
+  {
+    id: serial("id").primaryKey(),
+    sessionId: varchar("session_id").notNull(),
+    attempts: integer("attempts").notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (dtcSession) => {
+    return {
+      uniqueDtcId: uniqueIndex("unique_dtc_idx").on(dtcSession.sessionId),
+    };
+  }
+);
