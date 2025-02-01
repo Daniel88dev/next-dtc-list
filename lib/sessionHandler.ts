@@ -11,9 +11,7 @@ import {
 export async function checkDtcSession() {
   const cookieStore = await cookies();
 
-  let dtcSessionId: string | undefined = cookieStore.get("dtcSessionId") as
-    | string
-    | undefined;
+  let dtcSessionId = cookieStore.get("dtcSessionId")?.value;
 
   if (!dtcSessionId) {
     dtcSessionId = uuidv4();
@@ -36,4 +34,26 @@ export async function checkDtcSession() {
     path: "/",
     maxAge: 60 * 60 * 24 * 10,
   });
+}
+
+export async function decreaseDtcSessionAttempts() {
+  const cookieStore = await cookies();
+
+  const dtcSessionId = cookieStore.get("dtcSessionId")?.value;
+
+  if (!dtcSessionId) {
+    throw new Error("No dtcSessionId found in cookies");
+  }
+
+  const session = await getDtcSessionData(dtcSessionId);
+
+  if (!session) {
+    throw new Error("No session found for dtcSessionId");
+  }
+
+  const attempts = session.attempts - 1;
+
+  await updateDtcSession(dtcSessionId, attempts);
+
+  return attempts;
 }

@@ -1,5 +1,5 @@
 type Props = {
-  type: "short" | "notFound";
+  type: "short" | "notFound" | "attempts";
 };
 
 const DtcErrorSearch = ({ type }: Props) => {
@@ -13,6 +13,10 @@ const DtcErrorSearch = ({ type }: Props) => {
         No Result was found. Please try enter first letter of DTC in uppercase.
       </p>
     );
+  }
+
+  if (type === "attempts") {
+    return <p>You have reached the maximum number of attempts.</p>;
   }
 };
 
