@@ -15,7 +15,7 @@ const TermsOfServicePage = () => {
       <p className="mb-4">
         You may create an account using Clerk authentication. Your personal
         information is stored securely and managed according to our{" "}
-        <a href="#" className="underline">
+        <a href="https://clerk.chat/legal/privacy/" className="underline">
           Privacy Policy
         </a>
         .
