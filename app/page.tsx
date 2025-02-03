@@ -4,7 +4,7 @@ import SearchDtcComponent from "@/app/search-dtc/[dtc]/SearchDtcComponent";
 
 export default function WelcomePage() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
+    <div className="min-h-[90%] flex flex-col items-center justify-center p-4">
       <main className="max-w-4xl w-full rounded-lg shadow-xl p-8 space-y-8">
         <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-100">
           Welcome to DTC List

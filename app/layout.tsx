@@ -5,6 +5,7 @@ import { ClerkProvider, SignedOut } from "@clerk/nextjs";
 import { ReactNode } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/DarkModeToggle";
+import Footer from "@/app/_components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,7 @@ export default async function RootLayout({
 
               {children}
             </SignedOut>
+            <Footer />
           </ThemeProvider>
         </body>
       </html>
