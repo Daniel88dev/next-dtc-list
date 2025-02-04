@@ -31,7 +31,7 @@ export default async function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased h-[100vh]`}
         >
           <ThemeProvider
             attribute="class"
@@ -43,8 +43,9 @@ export default async function RootLayout({
               {/*<SignedIn>*/}
               {/*  <UserButton />*/}
               {/*</SignedIn>*/}
-
-              <ModeToggle />
+              <header className="bg-gray-800 text-white text-center p-4 h-[5vh] top-0">
+                <ModeToggle />
+              </header>
 
               {children}
             </SignedOut>
