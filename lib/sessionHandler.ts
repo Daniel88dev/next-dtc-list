@@ -8,6 +8,9 @@ import {
   updateDtcSession,
 } from "@/drizzle/dtcSession";
 
+// I know this logic isn't perfect. And its very easy to delete created session from browser.
+// But i wanted at least somehow limit unauthenticated user, to search dtc codes.
+
 export async function checkDtcSession() {
   const cookieStore = await cookies();
 

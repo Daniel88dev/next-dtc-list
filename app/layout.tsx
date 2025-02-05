@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/DarkModeToggle";
 import Footer from "@/app/_components/Footer";
+import Header from "@/app/_components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,10 +44,7 @@ export default async function RootLayout({
               {/*<SignedIn>*/}
               {/*  <UserButton />*/}
               {/*</SignedIn>*/}
-              <header className="bg-gray-800 text-white text-center p-4 h-[5vh] top-0">
-                <ModeToggle />
-              </header>
-
+              <Header />
               {children}
             </SignedOut>
             <Footer />
