@@ -18,12 +18,12 @@ export default function WelcomePage() {
         <SearchDtcComponent />
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <SignUpButton>
+          <SignUpButton mode={"modal"} forceRedirectUrl={"/home"}>
             <Button variant="outline" className="w-full sm:w-auto">
               Register
             </Button>
           </SignUpButton>
-          <SignInButton>
+          <SignInButton mode={"modal"} forceRedirectUrl={"/home"}>
             <Button className="w-full sm:w-auto">Login</Button>
           </SignInButton>
         </div>
