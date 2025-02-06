@@ -6,7 +6,7 @@ import Logo from "./Logo.svg";
 
 const Header = () => {
   return (
-    <header className="flex top-0 text-center px-4 h-[5vh] justify-between items-center">
+    <header className="sticky flex top-0 text-center px-4 h-[5vh] justify-between items-center bg-white dark:bg-black">
       <Link
         href={"/"}
         className={"flex gap-2 text-center items-center text-xl"}
