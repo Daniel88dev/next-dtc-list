@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import DtcDetailDialog from "@/app/(auth)/dtc-search/[dtc]/DtcDetailDialog";
 
 type Props = {
   dtcList: DtcListType[];
@@ -25,7 +26,7 @@ const DtcSearchTable = ({ dtcList }: Props) => {
       <TableBody>
         {dtcList.map((record) => (
           <TableRow key={`dtcRecord-${record.id}`}>
-            <TableCell>{record.dtc}</TableCell>
+            <DtcDetailDialog dtcDetail={record} />
             <TableCell>{record.type}</TableCell>
             <TableCell>{record.description}</TableCell>
           </TableRow>
