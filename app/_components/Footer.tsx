@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="flex bg-gray-800 text-white text-center px-4 h-[5%] bottom-0 justify-between items-center">
+    <footer className="sticky flex bg-gray-800 text-white text-center px-4 h-[5%] bottom-0 justify-between items-center">
       <Link href={"/"} className={"hover:underline md:text-base sm:text-xs"}>
         © {new Date().getFullYear()} DTC List
       </Link>

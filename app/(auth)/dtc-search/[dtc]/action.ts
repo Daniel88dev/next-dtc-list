@@ -2,7 +2,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { getDtcList } from "@/drizzle/dtc-list";
 
-type DtcListType = {
+export type DtcListType = {
   id: number;
   dtc: string;
   description: string | null;
