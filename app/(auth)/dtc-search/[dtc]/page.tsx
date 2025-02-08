@@ -9,8 +9,6 @@ const DtcSearchPage = async ({ params }: { params: Props }) => {
 
   const data = await loadDetailedDtc(dtc);
 
-  console.log(data);
-
   return (
     <>
       <h1>DTC Search: {dtc}</h1>

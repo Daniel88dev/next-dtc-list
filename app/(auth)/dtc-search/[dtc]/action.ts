@@ -1,6 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { getDtcList } from "@/drizzle/dtc-list";
+import { insertHistory } from "@/drizzle/searchHistory";
 
 export type DtcListType = {
   id: number;
@@ -20,11 +21,23 @@ export const loadDetailedDtc = async (dtc: string) => {
       redirect("/");
     }
 
+    const userName = user.firstName + " " + user.lastName;
+
+    const userId = user.id;
+
     if (dtc.length < 3) {
       return {
         success: false,
         type: "short",
         message: "DTC needs to be at least 3 characters long",
+      };
+    }
+
+    if (dtc.length > 10) {
+      return {
+        success: false,
+        type: "long",
+        message: "DTC needs to be at most 10 characters long",
       };
     }
 
@@ -41,6 +54,8 @@ export const loadDetailedDtc = async (dtc: string) => {
         detail: dtcResult.detail,
       };
     });
+
+    await insertHistory(dtc, dtcList.length, userId, userName);
 
     return {
       success: true,

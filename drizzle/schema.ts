@@ -1,4 +1,5 @@
 import {
+  date,
   integer,
   pgTable,
   serial,
@@ -7,22 +8,6 @@ import {
   uniqueIndex,
   varchar,
 } from "drizzle-orm/pg-core";
-
-export const UsersTable = pgTable(
-  "users",
-  {
-    id: serial("id").primaryKey(),
-    name: text("name").notNull(),
-    email: text("email").notNull(),
-    image: text("image").notNull(),
-    createdAt: timestamp("createdAt").defaultNow().notNull(),
-  },
-  (users) => {
-    return {
-      uniqueIdx: uniqueIndex("unique_idx").on(users.email),
-    };
-  }
-);
 
 export const dtcList = pgTable("dtc_list", {
   id: serial("id").primaryKey(),
@@ -49,3 +34,12 @@ export const dtcSession = pgTable(
     };
   }
 );
+
+export const searchHistory = pgTable("search_history", {
+  id: serial("id").primaryKey(),
+  searchedDtc: varchar("searched_dtc", { length: 10 }).notNull(),
+  resultsQty: integer("results_qty").notNull(),
+  userId: varchar("user_id").notNull(),
+  userName: varchar("user_name").notNull(),
+  createdAt: date("created_at").defaultNow().notNull(),
+});
