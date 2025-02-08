@@ -7,7 +7,6 @@ export async function insertHistory(
   userId: string,
   userName: string
 ) {
-  console.log(userId);
   return db.insert(searchHistory).values({
     searchedDtc: searchedDtc,
     resultsQty: results,

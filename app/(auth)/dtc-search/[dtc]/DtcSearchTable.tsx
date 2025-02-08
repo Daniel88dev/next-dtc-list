@@ -3,6 +3,7 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -32,6 +33,7 @@ const DtcSearchTable = ({ dtcList }: Props) => {
           </TableRow>
         ))}
       </TableBody>
+      <TableFooter></TableFooter>
     </Table>
   );
 };
