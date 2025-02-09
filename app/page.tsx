@@ -1,8 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import SearchDtcComponent from "@/app/search-dtc/[dtc]/SearchDtcComponent";
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-export default function WelcomePage() {
+export default async function WelcomePage() {
+  const user = await currentUser();
+
+  if (user?.id) {
+    redirect("/home");
+  }
   return (
     <div className="min-h-[90%] flex flex-col items-center justify-center p-4">
       <main className="max-w-4xl w-full rounded-lg shadow-xl p-8 space-y-8">

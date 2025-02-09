@@ -2,11 +2,19 @@ import { loadTopDtc } from "@/app/search-dtc/[dtc]/action";
 import BasicDtcList from "@/app/search-dtc/[dtc]/BasicDtcList";
 import SearchDtcComponent from "@/app/search-dtc/[dtc]/SearchDtcComponent";
 import DtcErrorSearch from "@/app/search-dtc/[dtc]/DtcErrorSearch";
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 type Props = Promise<{ dtc: string }>;
 
 const SearchDtcPage = async ({ params }: { params: Props }) => {
   const { dtc } = await params;
+
+  const user = await currentUser();
+
+  if (user?.id) {
+    redirect("/home");
+  }
 
   const data = await loadTopDtc(dtc);
 
