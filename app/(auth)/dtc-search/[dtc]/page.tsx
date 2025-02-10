@@ -10,14 +10,16 @@ const DtcSearchPage = async ({ params }: { params: Props }) => {
 
   const data = await loadDetailedDtc(dtc);
 
-  const firstTen = data.dtcList!.slice(0, 10);
+  const firstTen = data.dtcList!.slice(0, 20);
+
+  const totalPages = Math.ceil(data.dtcList!.length / 20) - 1;
 
   return (
     <>
       <h1>DTC Search: {dtc}</h1>
       <AuthSearchDtc dtc={dtc} />
       {data.success && <DtcSearchTable dtcList={firstTen} />}
-      <DtcPagination />
+      <DtcPagination dtc={dtc} currentPage={1} totalPages={totalPages} />
     </>
   );
 };
