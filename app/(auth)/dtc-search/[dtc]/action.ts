@@ -15,7 +15,7 @@ export type DtcListType = {
 
 type ResultType = {
   success: boolean;
-  type?: "notFound" | "short" | "long";
+  type?: "notFound" | "short" | "long" | "other";
   message?: string;
   results?: number;
   dtcList?: DtcListType[];

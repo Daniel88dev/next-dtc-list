@@ -11,7 +11,7 @@ export type LoadedBasicDtcListType = {
 
 type ResultType = {
   success: boolean;
-  type?: "notFound" | "short" | "attempts" | "long";
+  type?: "notFound" | "short" | "attempts" | "long" | "other";
   message?: string;
   dtcList?: LoadedBasicDtcListType[];
   attempts?: number;
@@ -72,6 +72,7 @@ export const loadTopDtc = async (dtc: string): Promise<ResultType> => {
     console.error(error);
     return {
       success: false,
+      type: "other",
       message: "Something went wrong",
     };
   }

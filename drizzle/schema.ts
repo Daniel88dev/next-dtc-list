@@ -43,3 +43,12 @@ export const searchHistory = pgTable("search_history", {
   userName: varchar("user_name").notNull(),
   createdAt: date("created_at").defaultNow().notNull(),
 });
+
+export const notFoundDtc = pgTable("not_found_dtc", {
+  id: serial("id").primaryKey(),
+  dtc: varchar("dtc", { length: 10 }).notNull(),
+  detail: varchar("detail"),
+  userId: varchar("user_id").notNull(),
+  userName: varchar("user_name").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});

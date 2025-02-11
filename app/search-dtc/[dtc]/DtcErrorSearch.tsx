@@ -1,5 +1,5 @@
 type Props = {
-  type: "short" | "notFound" | "attempts" | "long";
+  type: "short" | "notFound" | "attempts" | "long" | "other";
 };
 
 const DtcErrorSearch = ({ type }: Props) => {
@@ -23,6 +23,12 @@ const DtcErrorSearch = ({ type }: Props) => {
   if (type === "long") {
     return <p>Too long search parameter. Please enter correct DTC code.</p>;
   }
+
+  if (type === "other") {
+    return <p>Something went wrong. Please try again later.</p>;
+  }
+
+  return <p>Something went wrong. Please try again later.</p>;
 };
 
 export default DtcErrorSearch;
