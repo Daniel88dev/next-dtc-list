@@ -13,7 +13,15 @@ export type DtcListType = {
   detail: string | null;
 };
 
-export const loadDetailedDtc = async (dtc: string) => {
+type ResultType = {
+  success: boolean;
+  type?: "notFound" | "short" | "long";
+  message?: string;
+  results?: number;
+  dtcList?: DtcListType[];
+};
+
+export const loadDetailedDtc = async (dtc: string): Promise<ResultType> => {
   try {
     const user = await currentUser();
 
@@ -42,6 +50,15 @@ export const loadDetailedDtc = async (dtc: string) => {
     }
 
     const loadedDtc = await getDtcList(dtc);
+
+    if (loadedDtc.length === 0) {
+      await insertHistory(dtc, 0, userId, userName);
+      return {
+        success: false,
+        type: "notFound",
+        message: "No results found",
+      };
+    }
 
     const dtcList: DtcListType[] = loadedDtc.map((dtcResult) => {
       return {

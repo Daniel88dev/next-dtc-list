@@ -11,7 +11,7 @@ export type LoadedBasicDtcListType = {
 
 type ResultType = {
   success: boolean;
-  type?: "notFound" | "short" | "attempts";
+  type?: "notFound" | "short" | "attempts" | "long";
   message?: string;
   dtcList?: LoadedBasicDtcListType[];
   attempts?: number;
@@ -34,6 +34,14 @@ export const loadTopDtc = async (dtc: string): Promise<ResultType> => {
         success: false,
         type: "short",
         message: "DTC needs to be at least 3 characters long",
+      };
+    }
+
+    if (dtc.length > 10) {
+      return {
+        success: false,
+        type: "long",
+        message: "DTC needs to be at most 10 characters long",
       };
     }
 
