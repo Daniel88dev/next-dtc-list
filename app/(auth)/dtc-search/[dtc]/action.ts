@@ -22,6 +22,8 @@ type ResultType = {
 };
 
 export const loadDetailedDtc = async (dtc: string): Promise<ResultType> => {
+  console.log(dtc);
+
   try {
     const user = await currentUser();
 

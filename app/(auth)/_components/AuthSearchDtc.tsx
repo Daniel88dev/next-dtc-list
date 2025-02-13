@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
 
 type Props = {
-  dtc?: string;
+  dtc?: string | null;
 };
 
 const AuthSearchDtc = ({ dtc }: Props) => {

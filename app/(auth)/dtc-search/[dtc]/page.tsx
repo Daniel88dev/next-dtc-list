@@ -3,6 +3,7 @@ import AuthSearchDtc from "@/app/(auth)/_components/AuthSearchDtc";
 import DtcSearchTable from "@/app/(auth)/dtc-search/[dtc]/DtcSearchTable";
 import DtcPagination from "@/app/(auth)/dtc-search/[dtc]/DtcPagination";
 import DtcErrorSearch from "@/app/search-dtc/[dtc]/DtcErrorSearch";
+import DtcNotFound from "@/app/(auth)/dtc-search/DtcNotFound";
 
 type Props = Promise<{ dtc: string }>;
 
@@ -17,6 +18,7 @@ const DtcSearchPage = async ({ params }: { params: Props }) => {
         <h1>DTC Search: {dtc}</h1>
         <AuthSearchDtc dtc={dtc} />
         <DtcErrorSearch type={data.type!} />
+        <DtcNotFound dtc={dtc} />
       </>
     );
   } else {
@@ -34,6 +36,7 @@ const DtcSearchPage = async ({ params }: { params: Props }) => {
         <AuthSearchDtc dtc={dtc} />
         {data.success && <DtcSearchTable dtcList={firstTwenty} />}
         <DtcPagination dtc={dtc} currentPage={1} totalPages={totalPages} />
+        <DtcNotFound dtc={dtc} />
       </>
     );
   }
