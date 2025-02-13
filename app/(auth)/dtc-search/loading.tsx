@@ -1,4 +1,4 @@
-const Loading = () => {
+const LoadingDtcSearch = () => {
   return (
     <div className="flex space-x-2 justify-center items-center bg-white h-screen dark:invert">
       <span className="sr-only">Loading...</span>
@@ -9,4 +9,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default LoadingDtcSearch;
