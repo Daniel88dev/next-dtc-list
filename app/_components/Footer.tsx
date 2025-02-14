@@ -23,7 +23,7 @@ const Footer = () => {
           className={"hover:underline text-[8px] md:text-base"}
           href="mailto:daniel@hrynusiw.cz"
         >
-          Contact Us
+          Contact Me
         </a>
       </div>
     </footer>
