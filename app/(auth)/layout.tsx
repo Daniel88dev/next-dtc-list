@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import { currentUser } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
 import { SignedIn } from "@clerk/nextjs";
 import AuthHeader from "@/app/(auth)/_components/AuthHeader";
+import { redirect } from "next/navigation";
 
 export default async function AuthenticatedLayout({
   children,

@@ -23,12 +23,12 @@ export default async function WelcomePage() {
         </p>
         <SearchDtcComponent />
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <SignUpButton mode={"modal"} forceRedirectUrl={"/home"}>
+          <SignUpButton mode={"modal"}>
             <Button variant="outline" className="w-full sm:w-auto">
               Register
             </Button>
           </SignUpButton>
-          <SignInButton mode={"modal"} forceRedirectUrl={"/home"}>
+          <SignInButton mode={"modal"}>
             <Button className="w-full sm:w-auto">Login</Button>
           </SignInButton>
         </div>
