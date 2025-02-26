@@ -1,8 +1,23 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-export default clerkMiddleware({
-  authorizedParties: ["https://dtc-list.cz", "https://www.dtc-list.cz"],
-});
+const isProtectedRoute = createRouteMatcher(["/home(.*)", "/dtc-search(.*)"]);
+
+// export default clerkMiddleware(async (auth, req) => {
+//   if (isProtectedRoute(req)) await auth.protect()
+// })
+
+export default clerkMiddleware(
+  async (auth, req) => {
+    if (isProtectedRoute(req)) await auth.protect();
+  },
+  () => ({
+    authorizedParties: [
+      "https://dtc-list.cz",
+      "https://www.dtc-list.cz",
+      "http://localhost:3000",
+    ],
+  })
+);
 
 export const config = {
   matcher: [
