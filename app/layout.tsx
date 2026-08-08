@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider, SignedOut } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { ReactNode } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/app/_components/Footer";
-import Header from "@/app/_components/Header";
+import SignedOutHeader from "@/app/_components/SignedOutHeader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,9 +39,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <SignedOut>
-              <Header />
-            </SignedOut>
+            <SignedOutHeader />
 
             {children}
             <Footer />

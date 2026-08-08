@@ -21,11 +21,15 @@ export default clerkMiddleware(
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    "/((?!_next|[^?]*\\.(?:html?|css|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    // Everything except Next.js internals.
+    //
+    // Static-looking paths (.png, .css, .ico, ...) are deliberately NOT excluded:
+    // a request for one that does not exist is not served statically, it renders
+    // /_not-found through the root layout, and Clerk's auth() in that layout
+    // throws unless clerkMiddleware() ran for the request. Bots probing
+    // /apple-touch-icon.png and friends were turning 404s into 500s.
+    "/((?!_next/).*)",
     // Always run for API routes
     "/(api|trpc)(.*)",
-    "/api/:path*", // Ensure API routes are protected
-    "/trpc/:path*",
   ],
 };
